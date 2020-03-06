@@ -10,7 +10,7 @@ This project is to show how to detect and recognize buttons in an elevator for r
 Environment  
 ===========   
 
-```
+```  
     $ conda create -n detection python=3.7 pyqt=5
     $ conda activate detection  
     (detection)$ pip install -r requirements.txt  
@@ -22,8 +22,7 @@ Environment
     (detection)elevator_buttons_recognition/addons/labelImg$ pip install -r requirements/requirements-linux-python3.txt
     (detection)elevator_buttons_recognition/addons/labelImg$ cd ../..
     (detection)elevator_buttons_recognition$ git clone https://github.com/tensorflow/models.git
-
-```
+```  
 
 When labelImge doesn't work properly,  
 
@@ -37,7 +36,7 @@ When labelImge doesn't work properly,
 Training  
 ========  
 
-```
+```  
     # Create xmls with labelImg
     (detection)elevator_buttons_recognition$ python ./addons/labelImg/labelImg.py 
 
@@ -48,7 +47,7 @@ Training
     # Convert .csv to .record
     python generate_tfrecord.py --csv_input=./annotations/train_labes.csv --output_path=./annotations/train.record --img_path=images/train/
     python generate_tfrecord.py --csv_input=./annotations/test_labes.csv --output_path=./annotations/test.record --img_path=images/test/
-```
+```  
 
 Reference  
 =========  
