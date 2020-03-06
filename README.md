@@ -34,6 +34,22 @@ When labelImge doesn't work properly,
     pyrcc5 -o libs/resources.py resources.qrc  
 ```
 
+Training  
+========  
+
+```
+    # Create xmls with labelImg
+    (detection)elevator_buttons_recognition$ python ./addons/labelImg/labelImg.py 
+
+    # Convert xml to csv 
+    python xml_to_csv.py -i ./images/train/ -o ./annotations/train_labels.csv
+    python xml_to_csv.py -i ./images/test/ -o ./annotations/test_labels.csv
+
+    # Convert .csv to .record
+    python generate_tfrecord.py --csv_input=./annotations/train_labes.csv --output_path=./annotations/train.record --img_path=images/train/
+    python generate_tfrecord.py --csv_input=./annotations/test_labes.csv --output_path=./annotations/test.record --img_path=images/test/
+```
+
 Reference  
 =========  
 
@@ -52,3 +68,8 @@ Reference
 - [Elevator Button Recognition, Tensorflow1.12 on TX2, OCR RCNN, codes based on the paper below](https://github.com/zhudelong/ocr-rcnn-v2/tree/master/src/button_recognition/scripts/ocr_rcnn_lib)  
 - [A Novel OCR-RCNN for Elevator Button Recognition, 2018](http://www.ee.cuhk.edu.hk/~tgli/TingguangLi_files/IROS18_2028_FI.pdf)
 - [Autonomous Operation of Novel Elevators for Robot Navigation, 2017](http://ai.stanford.edu/~olga/papers/icra10-OperationOfNovelElevators.pdf)
+
+**ETC**    
+ 
+- [Issue installing in windows10/Python 3.7/ No module named 'libs.resources'](https://github.com/tzutalin/labelImg/issues/475)  
+- [Tensorflow 2.0 - AttributeError: module 'tensorflow' has no attribute 'Session'](https://stackoverflow.com/questions/55142951/tensorflow-2-0-attributeerror-module-tensorflow-has-no-attribute-session)  
