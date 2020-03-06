@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>58.jpg</filename>
+	<path>/home/jaykim/workspace/elevator_buttons_recognition/images/train/58.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>960</width>
+		<height>1280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>button</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>385</xmin>
+			<ymin>679</ymin>
+			<xmax>458</xmax>
+			<ymax>742</ymax>
+		</bndbox>
+	</object>
+</annotation>
