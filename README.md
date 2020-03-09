@@ -36,17 +36,36 @@ When labelImge doesn't work properly,
 Training  
 ========  
 
+Before training, environment needs to be setup.   
+
 ```  
-    # Create xmls with labelImg
+    (detection)elevator_buttons_recognition$ sudo apt-get install protobuf-compiler
+    (detection)elevator_buttons_recognition$ cd models/research
+    # Once done, Don't need to do again
+    (detection)elevator_buttons_recognition/models/research$ protoc object_detection/protos/*.proto --python_out=.
+    # For each terminal or put it in .bashrc for convenience
+    (detection)elevator_buttons_recognition/models/research$ export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+```
+
+There are 4 steps with the additional step for monitoring 
+
+```  
+    # 1. Create xmls with labelImg
     (detection)elevator_buttons_recognition$ python ./addons/labelImg/labelImg.py 
 
-    # Convert xml to csv 
-    python xml_to_csv.py -i ./images/train/ -o ./annotations/train_labels.csv
-    python xml_to_csv.py -i ./images/test/ -o ./annotations/test_labels.csv
+    # 2. Convert xml to csv 
+    (detection)elevator_buttons_recognition$  python xml_to_csv.py -i ./images/train/ -o ./annotations/train_labels.csv
+    (detection)elevator_buttons_recognition$ python xml_to_csv.py -i ./images/test/ -o ./annotations/test_labels.csv
 
-    # Convert .csv to .record
-    python generate_tfrecord.py --csv_input=./annotations/train_labes.csv --output_path=./annotations/train.record --img_path=images/train/
-    python generate_tfrecord.py --csv_input=./annotations/test_labes.csv --output_path=./annotations/test.record --img_path=images/test/
+    # 3. Convert .csv to .record
+    (detection)elevator_buttons_recognition$ python generate_tfrecord.py --csv_input=./annotations/train_labes.csv --output_path=./annotations/train.record --img_path=images/train/
+    (detection)elevator_buttons_recognition$ python generate_tfrecord.py --csv_input=./annotations/test_labes.csv --output_path=./annotations/test.record --img_path=images/test/
+
+    # 4. Start training   
+    (detection)elevator_buttons_recognition$ python train.py --logtostderr --train_dir=training/ --pipeline_config_path=training/ssd_inception_v2_coco.config
+
+    # (Optional) For visualization 
+    (detection)elevator_buttons_recognition$  tensorboard --logdir=training
 ```  
 
 Reference  
@@ -54,6 +73,7 @@ Reference
 
 **How to build my own button detector**  
 
+- [Tensorflow Object Detection API Installation (with tf 1.x)](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md)
 - [Tensorflow 2 Install](https://www.tensorflow.org/install)  
 - [TensorFlow Object Detection API tutorial](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/index.html)  
 - [Training Custom Object Detector](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html)  

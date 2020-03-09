@@ -1,8 +1,8 @@
-tensorflow
+tensorflow==1.14.0
 pillow
 lxml
 jupyter
 matplotlib
-opencv-pythoncd 
+opencv-python
 cython
 pandas
