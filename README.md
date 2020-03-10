@@ -42,6 +42,8 @@ Before training, environment needs to be setup.
     (detection)elevator_buttons_recognition$ sudo apt-get install protobuf-compiler
     (detection)elevator_buttons_recognition$ cd models/research
     # Once done, Don't need to do again
+    (detection)elevator_buttons_recognition/models/research$ wget -O protobuf.zip https://github.com/google/protobuf/releases/download/v3.0.0/protoc-3.0.0-linux-x86_64.zip
+    (detection)elevator_buttons_recognition/models/research$ unzip protobuf.zip
     (detection)elevator_buttons_recognition/models/research$ protoc object_detection/protos/*.proto --python_out=.
     # For each terminal or put it in .bashrc for convenience
     (detection)elevator_buttons_recognition/models/research$ export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
@@ -69,6 +71,13 @@ There are 5 steps with the additional step for monitoring
 
     # 5. Conversion to .pb file
     (detection)elevator_buttons_recognition$ python freeze_model.py --input_type image_tensor --pipeline_config_path ./training/ssd_inception_v2_coco.config --trained_checkpoint_prefix ./training/model.ckpt-87666 --output_directory ./training
+```  
+
+Inference  
+========  
+
+```  
+    (detection)elevator_buttons_recognition$ python inference.py  
 ```  
 
 Reference  

@@ -110,7 +110,7 @@ class ButtonDetector:
 
 if __name__ == '__main__':
   detector = ButtonDetector(verbose=True)
-  image = imageio.imread('./test_panels/51So8cLRFhL._AC_UL320_SR224,320_.jpg')
+  image = imageio.imread('./test_panels/image5.jpg')
 
   detector.predict(image)
   detector.clear_session()
