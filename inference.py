@@ -88,6 +88,7 @@ class ButtonDetector:
       max_boxes_to_draw=100,
       use_normalized_coordinates=True,
       line_thickness=5,
+      min_score_thresh=.4,
       predict_chars=None
     )
     img_show = PIL.Image.fromarray(image_np)
