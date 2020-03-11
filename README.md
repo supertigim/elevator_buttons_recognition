@@ -104,3 +104,4 @@ Reference
  
 - [Issue installing in windows10/Python 3.7/ No module named 'libs.resources'](https://github.com/tzutalin/labelImg/issues/475)  
 - [Tensorflow 2.0 - AttributeError: module 'tensorflow' has no attribute 'Session'](https://stackoverflow.com/questions/55142951/tensorflow-2-0-attributeerror-module-tensorflow-has-no-attribute-session)  
+- [TensorFlow: How to freeze a model and serve it with a python API](https://blog.metaflow.fr/tensorflow-how-to-freeze-a-model-and-serve-it-with-a-python-api-d4f3596b3adc)  
