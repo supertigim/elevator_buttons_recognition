@@ -110,8 +110,11 @@ class ButtonDetector:
     )
 
 if __name__ == '__main__':
+  import glob
   detector = ButtonDetector(verbose=True)
-  image = imageio.imread('./test_panels/image4.jpg')
-
-  detector.predict(image)
+  path = "./test_panels"
+  for img_file in glob.glob(path + '/*.jpg'):
+    image = imageio.imread(img_file)
+    #image = imageio.imread('./test_panels/image4.jpg')
+    detector.predict(image)
   detector.clear_session()

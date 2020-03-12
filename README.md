@@ -70,7 +70,7 @@ There are 5 steps with the additional step for monitoring
     (detection)elevator_buttons_recognition$ tensorboard --logdir=training
 
     # 5. Conversion to .pb file
-    (detection)elevator_buttons_recognition$ python freeze_model.py --input_type image_tensor --pipeline_config_path ./training/ssd_inception_v2_coco.config --trained_checkpoint_prefix ./training/model.ckpt-87666 --output_directory ./training
+    (detection)elevator_buttons_recognition$ python freeze_model.py --input_type image_tensor --pipeline_config_path ./training/ssd_inception_v2_coco.config --trained_checkpoint_prefix ./training/model.ckpt-200000 --output_directory ./frozen_model
 ```  
 
 Inference  
