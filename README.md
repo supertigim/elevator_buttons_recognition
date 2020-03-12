@@ -13,9 +13,9 @@ Environment
 ```  
     $ conda create -n detection python=3.7 pyqt=5
     $ conda activate detection  
-    (detection)$ pip install -r requirements.txt  
     (detection)$ git clone https://github.com/supertigim/elevator_buttons_recognition.git  
     (detection)$ cd elevator_buttons_recognition
+    (detection)elevator_buttons_recognition$ pip install -r requirements.txt  
     (detection)elevator_buttons_recognition$ mkdir addons && cd addons  
     (detection)elevator_buttons_recognition/addons$ git clone https://github.com/tzutalin/labelImg.git  
     (detection)elevator_buttons_recognition/addons$ cd labelImg  
@@ -41,10 +41,12 @@ Before training, environment needs to be setup.
 ```  
     (detection)elevator_buttons_recognition$ sudo apt-get install protobuf-compiler
     (detection)elevator_buttons_recognition$ cd models/research
+      
     # Once done, Don't need to do again
     (detection)elevator_buttons_recognition/models/research$ wget -O protobuf.zip https://github.com/google/protobuf/releases/download/v3.0.0/protoc-3.0.0-linux-x86_64.zip
     (detection)elevator_buttons_recognition/models/research$ unzip protobuf.zip
     (detection)elevator_buttons_recognition/models/research$ protoc object_detection/protos/*.proto --python_out=.
+      
     # For each terminal or put it in .bashrc for convenience
     (detection)elevator_buttons_recognition/models/research$ export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 ```
