@@ -3,9 +3,9 @@ Introduction
 
 This project is to show how to detect and recognize buttons in an elevator for robotics.  
 
-- Button Detection: tensorflow detection API  
+- Button Detection: tensorflow(<2.0) detection API  
 - Button Recognition: OCR  
-- Button Status (On/Off): Color Value Histogram   
+- Button Status (On/Off): Mean color value of each button   
 
 Environment  
 ===========   
@@ -86,7 +86,14 @@ Inference
 
 ![](image1_result.png)
 
-Pressed button is recognized in **red**.
+The pressed button on the image is recognized in **red**.
+
+
+To-do List  
+==========  
+
+- Press Button Detection Improvement  
+- Tensorflow 2.0 Implementation using [Model Garden](https://blog.tensorflow.org/2020/03/introducing-model-garden-for-tensorflow-2.html)  
 
 Reference  
 =========  
