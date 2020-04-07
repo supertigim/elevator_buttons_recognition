@@ -79,8 +79,14 @@ Inference
 ========  
 
 ```  
-    (detection)elevator_buttons_recognition$ python inference.py  
+    (detection)elevator_buttons_recognition$ python main.py -m cam      # Camera Streaming
+    # or 
+    (detection)elevator_buttons_recognition$ python main.py -m file    # Images from the directory
 ```  
+
+![](image1_result.png)
+
+Pressed button is recognized in **red**.
 
 Reference  
 =========  
