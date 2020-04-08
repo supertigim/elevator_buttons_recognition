@@ -13,17 +13,17 @@ class ButtonRecognition:
         self.recognizer = CharacterRecognizer(verbose=False)
         self.warmup()
 
-    def warmup(self, panel_path='./test_panels/image1.jpg', button_path='./test_button.png'):
+    def warmup(self, panel_path='./test_panels/image1.jpg', button_path='./test_panels/test_button.png'):
         image = imageio.imread(panel_path)
         button = imageio.imread(button_path)
         self.detector.predict(image)
         self.recognizer.predict(button)
 
-    def button_candidates(self, boxes, scores, image_np, score_threshold=0.5, press_threshold=4):
+    def button_candidates(self, boxes, scores, image_np, score_threshold=0.5, press_threshold=19):
         # TBD: press detection needs to be optimized or modified based on environments
-        avg_col = np.mean(image_np)
-        print("average color", avg_col)
-        if avg_col < 100: avg_col = 140
+        avg_col = np.mean(image_np[:,:,2])
+        #print("average color", avg_col, " ##################")
+        #if avg_col > 125: avg_col = 160
         img_height = image_np.shape[0]
         img_width = image_np.shape[1]
 
@@ -46,9 +46,14 @@ class ButtonRecognition:
             button_patches.append(button_patch)
             button_positions.append([x_min, y_min, x_max, y_max])
 
+            buf = np.copy(button_patch)#[:,:,2])
+            buf[buf != 255] = 0 #buf[buf > 0] = 1
+            v = np.sum(buf)/(max(img_height,img_width))
+            #print(np.mean(button_patch[:,:,2]), v)
+            
             button_presses.append(False)
-            if np.mean(button_patch) > avg_col + press_threshold: button_presses[-1] = True
-            #print(np.mean(button_patch))
+            if (avg_col < 60 and v > press_threshold*10) or \
+               (avg_col >= 60 and v > press_threshold): button_presses[-1] = True
             
         return button_patches, button_positions, button_scores, button_presses
 
@@ -66,7 +71,6 @@ class ButtonRecognition:
         )
 
     def draw_recognition_result(self, image_np, recognitions):
-        avg_col = np.mean(image_np)
         
         for (button_patch,_,chars,_,pos,press) in recognitions:    
             # generate image layer for drawing
@@ -78,17 +82,18 @@ class ButtonRecognition:
             font_size = min(x_center, y_center)*.8
             font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeMono.ttf", int(font_size))
             text_center = int(x_center), int(y_center)
-            text_color = (0, 0, 255) if press == False else (255, 0, 0)
-
+            text_color = (0, 0, 255) if press == True else (255, 0, 0)
+            #print(text_color, press)
             img_show.text(text_center, text=chars, fill=text_color, font=font)
             image_np[pos[1]: pos[3], pos[0]: pos[2]] = np.array(img_pil)
 
-    def predict(self, image_np, draw=False):
+    def predict(self, image_np, draw=False, image_f=False):
         recognitions = []
         boxes, scores, _, classes = self.detector.predict(image_np)
         button_patches, button_positions, button_scores, button_presses = self.button_candidates(boxes, scores, image_np)
         for i, button_img in enumerate(button_patches):
             button_text, text_score, _ = self.recognizer.predict(button_img)
+            if image_f: button_presses[i] = 1 - button_presses[i]
             recognitions.append((button_img, button_scores[i], button_text, text_score, button_positions[i], button_presses[i]))
 
         if draw:

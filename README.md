@@ -84,7 +84,7 @@ Inference
     (detection)elevator_buttons_recognition$ python main.py -m file    # Images from the directory
 ```  
 
-![](image1_result.png)
+![](results/image1_result.png)
 
 The pressed button on the image is recognized in **red**.
 

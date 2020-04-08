@@ -105,7 +105,7 @@ class CharacterRecognizer:
 
 if __name__ == '__main__':
   recognizer = CharacterRecognizer(verbose=False)
-  image = imageio.imread('./test_buttons/0_0.png')
+  image = imageio.imread('./result/test_buttons.png')
   _, _, img =recognizer.predict(image,True)
   image = Image.fromarray(img)
   image.show()
