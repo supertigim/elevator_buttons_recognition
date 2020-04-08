@@ -81,7 +81,9 @@ Inference
 ```  
     (detection)elevator_buttons_recognition$ python main.py -m cam      # Camera Streaming
     # or 
-    (detection)elevator_buttons_recognition$ python main.py -m file    # Images from the directory
+    (detection)elevator_buttons_recognition$ python main.py -m image    # Images Files
+    # or 
+    (detection)elevator_buttons_recognition$ python main.py -m video    # Video File 
 ```  
 
 ![](results/image1_result.png)
